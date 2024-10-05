@@ -14,5 +14,8 @@
     "backend"
   ],
   "author": "Shashikant Bharti",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
 }
