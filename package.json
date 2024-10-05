@@ -1,0 +1,16 @@
+{
+  "name": "youtube",
+  "version": "1.0.0",
+  "description": "a youtube like app using mern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "mern",
+    "backend"
+  ],
+  "author": "Shashikant Bharti",
+  "license": "ISC"
+}
