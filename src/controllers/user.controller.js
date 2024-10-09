@@ -5,7 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
-  //  Get User Details from Frontend
+  // Get User Details from Frontend
   const { username, email, fullName, password } = req.body;
 
   // Validation - not empty
@@ -16,7 +16,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Check if user already exists: unique username and email
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or: [{ email }, { username }],
   });
 
