@@ -55,7 +55,7 @@ This project is a user management system that implements JWT-based authenticatio
 
 #### sample .env file
 
-    ```bash
+```bash
     PORT=5000
     MONGODB_URI=mongodb://localhost:27017/your-database-name
     JWT_SECRET=your-jwt-secret
@@ -63,7 +63,7 @@ This project is a user management system that implements JWT-based authenticatio
     CLOUDINARY_CLOUD_NAME=your-cloudinary-cloud-name
     CLOUDINARY_API_KEY=your-cloudinary-api-key
     CLOUDINARY_API_SECRET=your-cloudinary-api-secret
-    ```
+```
 
 ## API Endpoints
 
