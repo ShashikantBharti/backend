@@ -83,11 +83,11 @@ POST /api/auth/refresh Refresh access token
 #### Method Endpoint Description
 
 ```bash
-GET /api/users/me Get current user details
-PATCH /api/users/update Update user details
-POST /api/users/avatar Update user avatar
-POST /api/users/cover Update user cover image
-PATCH /api/users/password Change current password
+  GET /api/users/me Get current user details
+  PATCH /api/users/update Update user details
+  POST /api/users/avatar Update user avatar
+  POST /api/users/cover Update user cover image
+  PATCH /api/users/password Change current password
 ```
 
 ### File Upload
