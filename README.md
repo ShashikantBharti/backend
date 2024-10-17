@@ -1,4 +1,6 @@
-# User Management API with JWT Authentication and Cloudinary Integration
+# YouTube Reference
+
+## User Management API with JWT Authentication and Cloudinary Integration
 
 This project is a user management system that implements JWT-based authentication (access and refresh tokens), and user-related functionalities such as registration, login, logout, updating user profile details, changing the current password, and uploading avatars and cover images to Cloudinary.
 

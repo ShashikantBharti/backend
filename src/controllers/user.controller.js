@@ -5,6 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
 import { OPTIONS } from "../constants.js";
+import mongoose from "mongoose";
 
 /**
  * @desc Generate Access Tokens and Refresh Tokens
@@ -98,7 +99,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   return res
     .status(201)
     .json(new ApiResponse(200, createdUser, "User registered successfully!"));
-}); 
+});
 
 export const loginUser = asyncHandler(async (req, res) => {
   // Req Data
@@ -413,5 +414,65 @@ export const getUserChannelProfile = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(200, channel[0], "User Channel Fetched Successfully!")
       );
-  } catch (error) {}
+  } catch (error) {
+    throw new ApiError(500, error?.message || "Interval Server Error");
+  }
+});
+
+export const getWatchHistory = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(req.user._id),
+        },
+      },
+      {
+        $lookup: {
+          from: "videos",
+          localField: "watchHistory",
+          foreignField: "_id",
+          as: "watchHistory",
+          pipeline: [
+            {
+              $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner",
+                pipeline: [
+                  {
+                    $project: {
+                      fullName: 1,
+                      username: 1,
+                      avatar: 1,
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              $addFields: {
+                owner: {
+                  $first: "$owner",
+                },
+              },
+            },
+          ],
+        },
+      },
+    ]);
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          200,
+          user[0].getWatchHistory,
+          "WatchHistory Fetched Successfully!"
+        )
+      );
+  } catch (error) {
+    throw new ApiError(500, error?.message || "Interval Server Error");
+  }
 });
